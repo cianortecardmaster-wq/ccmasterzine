@@ -552,3 +552,20 @@ button {
     font-size: 16px;
   }
 }
+
+.reader-loading strong,
+.reader-loading p,
+.reader-loading a {
+  display: block;
+}
+
+.reader-loading p {
+  margin: 10px 0 18px;
+  color: #bdbdbd;
+}
+
+.reader-loading a {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+}

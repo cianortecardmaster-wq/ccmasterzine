@@ -3,13 +3,15 @@
     "title": "Acervo de Revistas",
     "subtitle": "Publicações para folhear online"
   },
-  "generatedAt": "2026-07-10T19:35:18.953Z",
+  "generatedAt": "2026-07-10T23:19:55.682Z",
   "revistas": [
     {
-      "slug": "edicao-001-descubra-a-comunidade-de-card-game-de-cianorte-pdf",
-      "title": "Edição 001 — Descubra a comunidade de card game de Cianorte",
+      "slug": "edicao-001",
+      "edition": 1,
+      "title": "Edição 001",
       "type": "pdf",
-      "file": "revistas/Edição 001 - Descubra a comunidade de card game de Cianorte.pdf"
+      "file": "revistas/001.pdf",
+      "cover": "data/capas/001.jpg"
     }
   ]
 }

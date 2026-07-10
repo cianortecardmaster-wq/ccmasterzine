@@ -1,0 +1,23 @@
+{
+  "site": {
+    "title": "Acervo de Revistas",
+    "subtitle": "Publicações para folhear online"
+  },
+  "generatedAt": "2026-07-10T19:19:17.573Z",
+  "revistas": [
+    {
+      "slug": "revista-exemplo",
+      "title": "Revista de Exemplo",
+      "description": "Publicação demonstrativa incluída no projeto.",
+      "date": "2026-07-10",
+      "type": "images",
+      "cover": "revistas/revista-exemplo/001-capa.png",
+      "pages": [
+        "revistas/revista-exemplo/001-capa.png",
+        "revistas/revista-exemplo/002.png",
+        "revistas/revista-exemplo/003.png",
+        "revistas/revista-exemplo/004.png"
+      ]
+    }
+  ]
+}

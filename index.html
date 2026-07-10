@@ -1,1 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Acervo digital de revistas para leitura online.">
+  <title>Acervo de Revistas</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Voltar ao acervo">
+      <span class="brand-mark">AR</span>
+      <span>
+        <strong id="site-title">Acervo de Revistas</strong>
+        <small id="site-subtitle">Publicações para folhear online</small>
+      </span>
+    </a>
 
+    <div class="header-actions">
+      <label class="search-box">
+        <span class="sr-only">Pesquisar revistas</span>
+        <input id="search-input" type="search" placeholder="Pesquisar no acervo">
+      </label>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Alternar tema">◐</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="library-view" class="library-view">
+      <div class="hero">
+        <p class="eyebrow">Biblioteca digital</p>
+        <h1>Escolha uma revista e comece a folhear.</h1>
+        <p id="library-summary">Carregando acervo...</p>
+      </div>
+
+      <div id="empty-state" class="empty-state" hidden>
+        <strong>Nenhuma revista encontrada.</strong>
+        <p>Adicione arquivos PDF ou pastas com imagens dentro de <code>revistas/</code>.</p>
+      </div>
+
+      <section id="magazine-grid" class="magazine-grid" aria-live="polite"></section>
+    </section>
+
+    <section id="reader-view" class="reader-view" hidden>
+      <div class="reader-toolbar">
+        <button id="reader-back" class="toolbar-button" type="button">← Acervo</button>
+        <div class="reader-title">
+          <strong id="reader-magazine-title"></strong>
+          <span id="page-status">Página 1</span>
+        </div>
+        <div class="reader-actions">
+          <button id="zoom-out" class="icon-button" type="button" aria-label="Diminuir">−</button>
+          <button id="zoom-reset" class="icon-button" type="button" aria-label="Tamanho original">100%</button>
+          <button id="zoom-in" class="icon-button" type="button" aria-label="Aumentar">+</button>
+          <button id="fullscreen-button" class="icon-button" type="button" aria-label="Tela cheia">⛶</button>
+        </div>
+      </div>
+
+      <div id="reader-stage" class="reader-stage" tabindex="0">
+        <button id="previous-page" class="page-arrow page-arrow-left" type="button" aria-label="Página anterior">‹</button>
+        <div id="page-frame" class="page-frame">
+          <canvas id="pdf-canvas" hidden></canvas>
+          <img id="image-page" alt="" hidden>
+          <div id="reader-loading" class="reader-loading">Carregando página...</div>
+        </div>
+        <button id="next-page" class="page-arrow page-arrow-right" type="button" aria-label="Próxima página">›</button>
+      </div>
+
+      <div class="reader-footer">
+        <input id="page-slider" type="range" min="1" max="1" value="1" aria-label="Selecionar página">
+        <div class="reader-help">Use ← →, clique nas laterais ou deslize a página.</div>
+      </div>
+    </section>
+  </main>
+
+  <template id="magazine-card-template">
+    <article class="magazine-card">
+      <button class="cover-button" type="button">
+        <div class="cover-shell">
+          <canvas class="cover-canvas" hidden></canvas>
+          <img class="cover-image" alt="" hidden>
+          <div class="cover-placeholder">
+            <span>REVISTA</span>
+          </div>
+          <span class="format-badge"></span>
+        </div>
+        <span class="card-copy">
+          <strong class="card-title"></strong>
+          <small class="card-meta"></small>
+          <span class="read-link">Folhear →</span>
+        </span>
+      </button>
+    </article>
+  </template>
+
+  <script src="assets/app.js" type="module"></script>
+</body>
+</html>

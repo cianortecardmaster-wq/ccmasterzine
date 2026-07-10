@@ -3,21 +3,13 @@
     "title": "Acervo de Revistas",
     "subtitle": "Publicações para folhear online"
   },
-  "generatedAt": "2026-07-10T19:19:17.573Z",
+  "generatedAt": "2026-07-10T19:35:18.953Z",
   "revistas": [
     {
-      "slug": "revista-exemplo",
-      "title": "Revista de Exemplo",
-      "description": "Publicação demonstrativa incluída no projeto.",
-      "date": "2026-07-10",
-      "type": "images",
-      "cover": "revistas/revista-exemplo/001-capa.png",
-      "pages": [
-        "revistas/revista-exemplo/001-capa.png",
-        "revistas/revista-exemplo/002.png",
-        "revistas/revista-exemplo/003.png",
-        "revistas/revista-exemplo/004.png"
-      ]
+      "slug": "edicao-001-descubra-a-comunidade-de-card-game-de-cianorte-pdf",
+      "title": "Edição 001 — Descubra a comunidade de card game de Cianorte",
+      "type": "pdf",
+      "file": "revistas/Edição 001 - Descubra a comunidade de card game de Cianorte.pdf"
     }
   ]
 }

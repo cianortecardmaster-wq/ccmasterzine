@@ -18,12 +18,17 @@ function slugify(value) {
 }
 
 function titleFromFilename(value) {
-  return value
+  const title = value
     .replace(/\.[^.]+$/, "")
-    .replace(/[-_]+/g, " ")
+    .replace(/_/g, " ")
+    .replace(/\s+-\s+/g, " — ")
+    .replace(/-+/g, " ")
     .replace(/\s+/g, " ")
-    .trim()
-    .replace(/\b\p{L}/gu, (letter) => letter.toLocaleUpperCase("pt-BR"));
+    .trim();
+
+  return title
+    ? title[0].toLocaleUpperCase("pt-BR") + title.slice(1)
+    : title;
 }
 
 function naturalSort(a, b) {

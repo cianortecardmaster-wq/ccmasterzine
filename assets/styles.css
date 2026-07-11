@@ -370,7 +370,6 @@ button {
   transition: transform .15s ease;
 }
 
-#pdf-canvas,
 #image-page {
   display: block;
   max-width: none;
@@ -553,19 +552,12 @@ button {
   }
 }
 
-.reader-loading strong,
-.reader-loading p,
-.reader-loading a {
-  display: block;
-}
 
-.reader-loading p {
-  margin: 10px 0 18px;
-  color: #bdbdbd;
-}
-
-.reader-loading a {
+.pdf-button {
+  display: inline-grid;
+  place-items: center;
   color: #ffffff;
+  font-size: 11px;
   font-weight: 700;
-  text-decoration: underline;
+  text-decoration: none;
 }

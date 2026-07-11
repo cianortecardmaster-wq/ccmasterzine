@@ -1,35 +1,45 @@
-# Acervo de Revistas
+# CC Masters Zine
 
-Site estático para GitHub Pages, com vitrine de capas e leitor de PDF.
-
-## Como publicar as edições
-
-Envie os PDFs para a pasta `revistas/`, usando sempre três números:
+O site usa PDFs numerados em ordem:
 
 ```text
 revistas/
 ├── 001.pdf
 ├── 002.pdf
 ├── 003.pdf
-├── 004.pdf
 └── ...
 ```
 
-Não coloque título, espaços ou acentos no nome do arquivo.
+## Como funciona
 
-Cada novo envio executa automaticamente estas etapas:
+Ao publicar uma alteração, o GitHub Actions:
 
-1. gera a capa usando a primeira página do PDF;
-2. atualiza a página inicial;
-3. mostra a edição de maior número primeiro;
-4. publica novamente o site no GitHub Pages.
+1. encontra os PDFs numerados;
+2. converte todas as páginas para imagens JPG;
+3. usa a primeira página como capa;
+4. monta o catálogo;
+5. publica o leitor no GitHub Pages.
 
-O arquivo `002.pdf` será exibido como **Edição 002**, o `003.pdf` como **Edição 003** e assim por diante.
+O PDF original também permanece disponível pelo botão `PDF` dentro do leitor.
+
+Essa conversão evita problemas de compatibilidade do PDF.js com imagens JPEG 2000 presentes em alguns PDFs exportados pelo Canva ou processados por outros serviços.
+
+## Publicar uma nova edição
+
+Envie apenas o próximo arquivo para a pasta `revistas/`.
+
+Exemplo:
+
+```text
+revistas/002.pdf
+```
+
+Não é necessário editar o catálogo nem gerar a capa manualmente.
 
 ## GitHub Pages
 
-Em `Settings → Pages → Build and deployment → Source`, mantenha selecionado:
+Em `Settings → Pages`, mantenha:
 
 ```text
-GitHub Actions
+Source: GitHub Actions
 ```

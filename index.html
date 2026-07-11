@@ -54,6 +54,7 @@
           <button id="zoom-out" class="icon-button" type="button" aria-label="Diminuir">−</button>
           <button id="zoom-reset" class="icon-button" type="button" aria-label="Tamanho original">100%</button>
           <button id="zoom-in" class="icon-button" type="button" aria-label="Aumentar">+</button>
+          <a id="open-pdf" class="icon-button pdf-button" href="#" target="_blank" rel="noopener" aria-label="Abrir PDF original">PDF</a>
           <button id="fullscreen-button" class="icon-button" type="button" aria-label="Tela cheia">⛶</button>
         </div>
       </div>
@@ -61,7 +62,6 @@
       <div id="reader-stage" class="reader-stage" tabindex="0">
         <button id="previous-page" class="page-arrow page-arrow-left" type="button" aria-label="Página anterior">‹</button>
         <div id="page-frame" class="page-frame">
-          <canvas id="pdf-canvas" hidden></canvas>
           <img id="image-page" alt="" hidden>
           <div id="reader-loading" class="reader-loading">Carregando página...</div>
         </div>

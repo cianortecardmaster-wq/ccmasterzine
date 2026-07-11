@@ -3,15 +3,41 @@
     "title": "Acervo de Revistas",
     "subtitle": "Publicações para folhear online"
   },
-  "generatedAt": "2026-07-10T23:19:55.682Z",
+  "generatedAt": "2026-07-10T23:38:26.821Z",
   "revistas": [
     {
       "slug": "edicao-001",
-      "edition": 1,
       "title": "Edição 001",
-      "type": "pdf",
-      "file": "revistas/001.pdf",
-      "cover": "data/capas/001.jpg"
+      "type": "images",
+      "pdf": "revistas/001.pdf",
+      "cover": "data/edicoes/001/001.jpg",
+      "pagesCount": 24,
+      "pages": [
+        "data/edicoes/001/001.jpg",
+        "data/edicoes/001/002.jpg",
+        "data/edicoes/001/003.jpg",
+        "data/edicoes/001/004.jpg",
+        "data/edicoes/001/005.jpg",
+        "data/edicoes/001/006.jpg",
+        "data/edicoes/001/007.jpg",
+        "data/edicoes/001/008.jpg",
+        "data/edicoes/001/009.jpg",
+        "data/edicoes/001/010.jpg",
+        "data/edicoes/001/011.jpg",
+        "data/edicoes/001/012.jpg",
+        "data/edicoes/001/013.jpg",
+        "data/edicoes/001/014.jpg",
+        "data/edicoes/001/015.jpg",
+        "data/edicoes/001/016.jpg",
+        "data/edicoes/001/017.jpg",
+        "data/edicoes/001/018.jpg",
+        "data/edicoes/001/019.jpg",
+        "data/edicoes/001/020.jpg",
+        "data/edicoes/001/021.jpg",
+        "data/edicoes/001/022.jpg",
+        "data/edicoes/001/023.jpg",
+        "data/edicoes/001/024.jpg"
+      ]
     }
   ]
 }

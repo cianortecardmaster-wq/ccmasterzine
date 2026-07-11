@@ -2,81 +2,112 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const magazinesDirectory = path.join(root, "revistas");
-const coversDirectory = path.join(root, "data", "capas");
+const pdfDirectory = path.join(root, "revistas");
+const pagesRoot = path.join(root, "data", "edicoes");
 const outputFile = path.join(root, "data", "revistas.json");
 
 function webPath(...parts) {
   return parts.join("/").replaceAll(path.sep, "/");
 }
 
+function editionNumber(code) {
+  return Number.parseInt(code, 10);
+}
+
 async function readJson(filePath) {
   try {
-    return JSON.parse(await fs.readFile(filePath, "utf8"));
+    return JSON.parse(
+      await fs.readFile(filePath, "utf8")
+    );
   } catch {
     return {};
   }
 }
 
-async function pathExists(filePath) {
-  try {
-    await fs.access(filePath);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function editionNumber(filename) {
-  return Number.parseInt(filename.replace(/\.pdf$/i, ""), 10);
-}
-
-function editionCode(filename) {
-  return filename.replace(/\.pdf$/i, "");
-}
-
-async function scan() {
-  await fs.mkdir(magazinesDirectory, { recursive: true });
-  await fs.mkdir(coversDirectory, { recursive: true });
-  await fs.mkdir(path.dirname(outputFile), { recursive: true });
+async function main() {
+  await fs.mkdir(pdfDirectory, {
+    recursive: true
+  });
+  await fs.mkdir(pagesRoot, {
+    recursive: true
+  });
+  await fs.mkdir(path.dirname(outputFile), {
+    recursive: true
+  });
 
   const entries = await fs.readdir(
-    magazinesDirectory,
+    pdfDirectory,
     { withFileTypes: true }
   );
 
-  const pdfFiles = entries
+  const codes = entries
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
     .filter((name) => /^\d{3}\.pdf$/i.test(name))
+    .map((name) => name.replace(/\.pdf$/i, ""))
     .sort((a, b) => editionNumber(b) - editionNumber(a));
 
   const magazines = [];
 
-  for (const filename of pdfFiles) {
-    const code = editionCode(filename);
-    const coverFilename = `${code}.jpg`;
-    const coverPath = path.join(coversDirectory, coverFilename);
+  for (const code of codes) {
+    const editionDirectory = path.join(
+      pagesRoot,
+      code
+    );
+
+    let pageFiles = [];
+
+    try {
+      pageFiles = (await fs.readdir(editionDirectory))
+        .filter((name) => /^\d{3}\.jpg$/i.test(name))
+        .sort((a, b) =>
+          a.localeCompare(b, "pt-BR", {
+            numeric: true
+          })
+        );
+    } catch {
+      pageFiles = [];
+    }
+
+    if (pageFiles.length === 0) {
+      console.warn(
+        `Edição ${code} ignorada: páginas não encontradas.`
+      );
+      continue;
+    }
 
     magazines.push({
       slug: `edicao-${code}`,
-      edition: editionNumber(filename),
       title: `Edição ${code}`,
-      type: "pdf",
-      file: webPath("revistas", filename),
-      cover: (await pathExists(coverPath))
-        ? webPath("data", "capas", coverFilename)
-        : ""
+      type: "images",
+      pdf: webPath("revistas", `${code}.pdf`),
+      cover: webPath(
+        "data",
+        "edicoes",
+        code,
+        pageFiles[0]
+      ),
+      pagesCount: pageFiles.length,
+      pages: pageFiles.map((filename) =>
+        webPath(
+          "data",
+          "edicoes",
+          code,
+          filename
+        )
+      )
     });
   }
 
   const current = await readJson(outputFile);
+
   const payload = {
     site: {
-      title: current.site?.title || "Acervo de Revistas",
+      title:
+        current.site?.title || "CC Masters Zine",
       subtitle:
         current.site?.subtitle ||
-        "Publicações para folhear online"
+        "Revistas da comunidade para folhear online"
     },
     generatedAt: new Date().toISOString(),
     revistas: magazines
@@ -89,11 +120,11 @@ async function scan() {
   );
 
   console.log(
-    `Catálogo gerado com ${magazines.length} revista(s).`
+    `Catálogo gerado com ${magazines.length} edição(ões).`
   );
 }
 
-scan().catch((error) => {
+main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });

@@ -32,16 +32,29 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Gerar catálogo das revistas
+      - name: Instalar conversor de PDF
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Converter PDFs em páginas
+        run: node scripts/generate-pages.mjs
+
+      - name: Gerar catálogo
         run: node scripts/generate-manifest.mjs
+
+      - name: Montar site
+        run: |
+          mkdir -p _site
+          cp -R index.html assets data revistas .nojekyll _site/
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Preparar arquivos para publicação
+      - name: Preparar publicação
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: "_site"
 
       - name: Publicar site
         id: deployment

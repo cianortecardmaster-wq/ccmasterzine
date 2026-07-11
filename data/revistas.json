@@ -1,9 +1,10 @@
 {
   "site": {
     "title": "Acervo de Revistas",
-    "subtitle": "Publicações para folhear online"
+    "subtitle": "Publicações para folhear online",
+    "url": "https://revista.cianortecardmasters.com.br"
   },
-  "generatedAt": "2026-07-10T23:38:26.821Z",
+  "generatedAt": "2026-07-11T01:31:06.697Z",
   "revistas": [
     {
       "slug": "edicao-001",
